@@ -5,7 +5,7 @@ package com.block;
  */
 public class Block {
     // 记录区块的位置
-    private int index;
+    private long index;
 
     // 区块中记录的数据
     private String data;
@@ -21,7 +21,7 @@ public class Block {
 
     public Block() {}
 
-    public Block(int index, String preHash, long timeStamp, String data, String hash) {
+    public Block(long index, String preHash, long timeStamp, String data, String hash) {
         this.index = index;
         this.preHash = preHash;
         this.timeStamp = timeStamp;
@@ -29,11 +29,8 @@ public class Block {
         this.hash = hash;
     }
 
-    public Block genesisBlock() {
-        return new Block(1, "0", System.currentTimeMillis(), "Hello Block", "aa212344fc10ea0a2cb885078fa9bc2354e55efc81be8f56b66e4a837157662e");
-    }
 
-    public int getIndex() {
+    public long getIndex() {
         return index;
     }
 
