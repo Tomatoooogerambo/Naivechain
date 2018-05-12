@@ -16,6 +16,9 @@ public class Main {
 
                 // 对p2p、http初始化
                 p2PService.initP2PServer(p2pPort);
+                if(args.length == 3 && args[2] != null) {
+                    p2PService.connectToPeer(args[2]);
+                }
                 HTTPService httpService = new HTTPService(blockService, p2PService);
                 httpService.initHTTPService(httpPort);
             } catch (Exception e) {

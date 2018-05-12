@@ -64,19 +64,19 @@ public class HTTPService {
     private class AddPeerServlet extends HttpServlet {
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            resp.setCharacterEncoding("UTF-8");
-            String peer = req.getParameter("peer");
-            p2PService.connectToPeer(peer);
-            resp.getWriter().println("Ok");
+            super.doGet(req,resp);
         }
 
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            super.doPost(req, resp);
+            resp.setCharacterEncoding("UTF-8");
+            String peer = req.getParameter("peer");
+            p2PService.connectToPeer(peer);
+            resp.getWriter().println("\n"+"Successfully add the new peer");
         }
     }
 
-    /**
+    /**Ht
      * 查看所有加点的Servlet
      */
     private class PeersServlet extends HttpServlet {
@@ -85,7 +85,7 @@ public class HTTPService {
             resp.setCharacterEncoding("UTF-8");
             for(WebSocket socket : p2PService.getSockets()) {
                 InetSocketAddress remoteAddress = socket.getRemoteSocketAddress();
-                resp.getWriter().println(remoteAddress.getHostName()+ ": "+ remoteAddress.getPort());
+                resp.getWriter().println("\n" + remoteAddress.getHostName() + "  : " + remoteAddress.getPort());
             }
         }
 
