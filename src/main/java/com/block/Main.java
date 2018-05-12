@@ -7,9 +7,16 @@ public class Main {
     public static void main(String[] args) {
         if(args != null && (args.length == 2 || args.length == 3)) {
             try {
+                // 获得http 以及 p2p端口
                 int httpPort = Integer.valueOf(args[0]);
+                int p2pPort = Integer.valueOf(args[1]);
+
                 BlockService blockService = new BlockService();
-                HTTPService httpService = new HTTPService(blockService);
+                P2PService p2PService = new P2PService(blockService);
+
+                // 对p2p、http初始化
+                p2PService.initP2PServer(p2pPort);
+                HTTPService httpService = new HTTPService(blockService, p2PService);
                 httpService.initHTTPService(httpPort);
             } catch (Exception e) {
                 System.out.println("Init service error : " + e.getMessage());

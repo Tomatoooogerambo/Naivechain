@@ -101,7 +101,7 @@ public class BlockService {
         return blockChain;
     }
 
-    public void setBlockChain(ArrayList<Block> blockChain) {
+    public void setBlockChain(List<Block> blockChain) {
         this.blockChain = blockChain;
     }
 
@@ -113,7 +113,7 @@ public class BlockService {
      * @param blockchainToValid
      * @return
      */
-    public boolean isValidBlockChain(ArrayList<Block> blockchainToValid) {
+    public boolean isValidBlockChain(List<Block> blockchainToValid) {
         boolean isValidGenesis = JSON.toJSONString(blockchainToValid.get(0)) == JSON.toJSONString(genesisBlock);
 
         if(!isValidGenesis)
@@ -126,8 +126,8 @@ public class BlockService {
         return true;
     }
 
-    public void chooseLongestChain(ArrayList<Block> chainToChoose) {
-        if(isValidBlockChain(chainToChoose) && chainToChoose.size() > getBlockChain().size()) {
+    public void chooseLongestChain(List<Block> chainToChoose) {
+        if(isValidBlockChain(chainToChoose) && chainToChoose.size() > this.getBlockChain().size()) {
             setBlockChain(chainToChoose);
             // broadcast
 
