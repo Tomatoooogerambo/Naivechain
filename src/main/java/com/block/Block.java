@@ -1,5 +1,7 @@
 package com.block;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * Created by 越 on 2018/5/1.
  */
@@ -19,14 +21,22 @@ public class Block {
     // 前一个区块的散列值
     private String preHash;
 
+    // 区块的目标难度值
+    private int difficult;
+
+    // 为了寻找到该区块所需要的nonce
+    private int nonce;
+
     public Block() {}
 
-    public Block(long index, String preHash, long timeStamp, String data, String hash) {
+    public Block(long index, String preHash, long timeStamp, String data, String hash, int difficult, int nonce) {
         this.index = index;
         this.preHash = preHash;
         this.timeStamp = timeStamp;
         this.data = data;
         this.hash = hash;
+        this.difficult = difficult;
+        this.nonce = nonce;
     }
 
 
@@ -34,7 +44,7 @@ public class Block {
         return index;
     }
 
-    public void setIndex(int index) {
+    public void setIndex(long index) {
         this.index = index;
     }
 
@@ -56,7 +66,7 @@ public class Block {
 
     public String getHash() {
         return hash;
-    }
+}
 
     public void setHash(String hash) {
         this.hash = hash;
@@ -68,5 +78,26 @@ public class Block {
 
     public void setPreHash(String preHash) {
         this.preHash = preHash;
+    }
+
+    public int getDifficult() {
+        return difficult;
+    }
+
+    public void setDifficult(int difficult) {
+        this.difficult = difficult;
+    }
+
+    public int getNonce() {
+        return nonce;
+    }
+
+    public void setNonce(int nonce) {
+        this.nonce = nonce;
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
     }
 }

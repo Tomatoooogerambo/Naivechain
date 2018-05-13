@@ -35,6 +35,7 @@ public class HTTPService {
             contextHandler.addServlet(new ServletHolder(new BlockServlet()), "/blocks");
             contextHandler.addServlet(new ServletHolder(new AddPeerServlet()), "/addPeer");
             contextHandler.addServlet(new ServletHolder(new PeersServlet()), "/peers");
+            contextHandler.addServlet(new ServletHolder(new MineBlockServlet()), "/miner");
             server.start();
             server.join();
         }catch(Exception e) {
@@ -49,7 +50,7 @@ public class HTTPService {
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             resp.setCharacterEncoding("UTF-8");
-            resp.getWriter().println(JSON.toJSONString(blockService.getBlockChain()));
+            resp.getWriter().println("\n" + JSON.toJSONString(blockService.getBlockChain()));
         }
 
         @Override
@@ -76,7 +77,7 @@ public class HTTPService {
         }
     }
 
-    /**Ht
+    /**
      * 查看所有加点的Servlet
      */
     private class PeersServlet extends HttpServlet {
@@ -92,6 +93,24 @@ public class HTTPService {
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             doGet(req, resp);
+        }
+    }
+
+    private class MineBlockServlet extends HttpServlet {
+        @Override
+        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            resp.setContentType("UTF-8");
+            int difficult = 5;
+            Block newMineBlock = blockService.generateNextBlock(difficult);
+            blockService.addBlock(newMineBlock);
+            p2PService.broadcast(p2PService.responseLatestBlockMsg());
+            String info = JSON.toJSONString(newMineBlock);
+            resp.getWriter().println("\n add new block : \n" + info);
+        }
+
+        @Override
+        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            super.doPost(req, resp);
         }
     }
 }

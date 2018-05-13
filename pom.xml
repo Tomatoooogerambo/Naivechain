@@ -79,6 +79,13 @@
       <version>1.7.21</version>
     </dependency>
 
+    <!--加入一个JUnit测试单元-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+    </dependency>
+
   </dependencies>
 
   <build>

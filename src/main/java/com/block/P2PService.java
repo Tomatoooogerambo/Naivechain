@@ -120,12 +120,13 @@ public class P2PService {
         Collections.sort(reciveBlocks, new Comparator<Block>() {
             @Override
             public int compare(Block o1, Block o2) {
-                return (int)(o2.getIndex() - o1.getIndex());
+                return (int)(o1.getIndex() - o2.getIndex());
             }
         });
+        System.out.println(reciveBlocks.get(1));
         if(blockService.isValidBlockChain(reciveBlocks)) {
             blockService.chooseLongestChain(reciveBlocks);
-            broadcast(responseChainMsg());
+            broadcast(responseLatestBlockMsg());
         }
         else
             System.out.println("received chain is inValid, drop it \n"
@@ -207,12 +208,13 @@ public class P2PService {
     }
 
     /**
+     * 主动广播消息 权限设置为public
      * 发送回复消息编号以及最新一个区块的数据
      * @return
      */
-    private String responseLatestBlockMsg() {
-        Block[] blocks = {blockService.getLatestBlock()};
-        return JSON.toJSONString(new Message(RESPONSE_LATEST, JSON.toJSONString(blocks)));
+    public String responseLatestBlockMsg() {
+        Block[] block = {blockService.getLatestBlock()};
+        return JSON.toJSONString(new Message(RESPONSE_LATEST, JSON.toJSONString(block)));
     }
 
     public List<WebSocket> getSockets() {
