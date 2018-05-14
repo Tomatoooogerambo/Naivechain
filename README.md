@@ -28,6 +28,7 @@ cd target
 
 打开多个命令窗口，用于模仿多个节点。<br>
 在每一个命令窗口分别打开
+#### 注意 在生成的target目录下打开窗口
 ```
 java -jar naivechain.jar 8080 7000
 java -jar naivechain.jar 8081 7001
@@ -36,6 +37,8 @@ java -jar naivechain.jar 8082 7002
 
 现在我们有3个节点了<br>
 再打开一个命令窗口，开始测试各功能<br>
+_windows下如果调用curl需要安装先。当然你也可以使用其他的命令调用_<br>
+_这里给出curl的[安装教程](https://blog.csdn.net/zoubf/article/details/51809967)_
 1. 先来看下自己的初始创世块的信息
 ```
 curl http://localhost:8080/blocks
@@ -62,3 +65,6 @@ curl http://localhost:8080/miner
 curl http://localhost:8080/blocks
 ```
 
+## 欢迎讨论交流
+e-mail: 736170457@qq.com
+ 
