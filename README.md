@@ -5,7 +5,8 @@
 ### 用于学习区块链的底层原理
 1. lhartikk提供的构建区块链的思路： [动手之前先理清楚思路吧！](https://lhartikk.github.io/)<br>
 2. 如果理解有难度，配合着视频讲解也不错哦！ [讲解配套第一点的视频](https://github.com/Fabsqrt/BitTigerLab/blob/master/Blockchain/Classes/Blockchain/README.md)<br>
-3. js写的java就写不出来？ 不要被编程语言绊住， 它只是你和计算机交谈的一种方式。[java实现参考版本](https://github.com/sunysen/naivechain) 
+3. js写的java就写不出来？ 不要被编程语言绊住， 它只是你和计算机交谈的一种方式。[java实现参考版本](https://github.com/sunysen/naivechain)
+或者查看本demo
 
 # Quick Start
 ```
@@ -65,6 +66,6 @@ curl http://localhost:8080/miner
 curl http://localhost:8080/blocks
 ```
 
-## 欢迎讨论交流
+## 欢迎讨论交流Star
 e-mail: 736170457@qq.com
  
